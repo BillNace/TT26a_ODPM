@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Your Name
+ * Copyright (c) 2026 Bill Nace
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -15,6 +15,26 @@ module tt_um_example (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
+
+  logic clock, reset;
+
+  assign clock = clk;
+  assign reset = ~rst_n;
+
+  SPI_Joystick sj(.clock,
+                  .reset,
+                  .mosi,
+                  .miso,
+                  .slave_select_n,
+                  .sclk,
+                  .joy_x,
+                  .joy_y,
+                  .btn_j,
+                  .btn_t,
+                  .ledr,
+                  .ledg,
+                  .ledb
+                 );
 
   // All output pins must be assigned. If not used, assign to 0.
   assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
